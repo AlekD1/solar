@@ -135,6 +135,21 @@ function SceneManager(canvas) {
     window.addEventListener('dblclick', setPickPosition);
     window.addEventListener('mouseout', clearPickPosition);
     window.addEventListener('mouseleave', clearPickPosition);
+   
+       // Mobile support
+    window.addEventListener('touchstart', (event) => {
+        // prevent the window from scrolling
+        event.preventDefault();
+        setPickPosition(event.touches[0]);
+    }, { passive: false });
+
+    window.addEventListener('touchmove', (event) => {
+        setPickPosition(event.touches[0]);
+    });
+
+    window.addEventListener('touchend', clearPickPosition);
+
+
 
 
     {
