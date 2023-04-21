@@ -1,0 +1,217 @@
+@font-face {
+    font-family: 'Exo2';
+    src: url('../../../fonts/exo2-webfont.eot');
+    src: url('../../../fonts/Exo2.otf') format('opentype'), url('../../../fonts/exo2-webfont.woff2') format('woff2'), url('../../../fonts/exo2-webfont.woff') format('woff'), url('../../../fonts/exo2-webfont.svg#Exo2') format('svg'), url('../../../fonts/exo2-webfont.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-display: swap;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Exo2', sans-serif;
+    font-size: 16px;
+    scrollbar-face-color: #aaa;
+    scrollbar-track-color: #212121;
+}
+
+.home {
+    position: fixed;
+    top: 13px;
+    left: 13px;
+    font-size: 16px;
+    z-index: 100;
+}
+
+.home a {
+    color: #993333;
+}
+
+.copyright {
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    font-family: 'Exo2', sans-serif;
+    font-size: 13px;
+    color: #767676;
+    text-align: right;
+    z-index: 101;
+}
+
+a {
+    color: #c0c0c0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#error {
+    display: none;
+    z-index: 0;
+    background-color: black;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#error a {
+    color: #fff;
+}
+
+#error img {
+    display: inline-block;
+    width: 64px;
+    margin-right: 50px;
+}
+
+canvas {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+}
+
+#info {
+    z-index: 2;
+    position: fixed;
+    bottom: 0px;
+    margin-bottom: 0px;
+    left: 10px;
+}
+
+#info p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #fff;
+    margin-top: -12px;
+}
+
+#guiContainer {
+    position: fixed;
+    right: 5px;
+    top: 0px;
+    z-index: 2;
+    user-select: none;
+}
+
+#aboutLink {
+    color: #fff;
+    z-index: 3;
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+    font-size: 20px;
+}
+
+#bellowAbout {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: 0.3s linear;
+    -moz-transition: 0.3s linear;
+    -o-transition: 0.3s linear;
+}
+
+#about {
+    z-index: 4;
+    background-color: rgba(17, 17, 17, 0.85);
+    position: fixed;
+    width: 90%;
+    height: 80%;
+    top: 0px;
+    left: 5%;
+    overflow: auto;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff;
+    border-radius: 1px;
+    -webkit-transition: 0.3s linear;
+    -moz-transition: 0.3s linear;
+    -o-transition: 0.3s linear;
+    display: none;
+}
+
+.showAbout {
+    -webkit-transform: translate(180%, 137.5%);
+    -moz-transform: translate(180%, 137.5%);
+    -ms-transform: translate(180%, 137.5%);
+    -o-transform: translate(180%, 137.5%);
+    transform: translate(0%, 137.5%);
+}
+
+#about h1 {
+    font-size: calc(18px + 2vmin);
+    font-weight: 100;
+    margin-left: 10px;
+}
+
+#about h2 {
+    font-size: calc(16px + 1vmin);
+    font-weight: 100;
+    margin-left: 20px;
+}
+
+#about h3 {
+    font-size: calc(14px + 1vmin);
+    font-weight: 100;
+    margin-left: 40px;
+}
+
+#about p {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#about ul {
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 1.7;
+}
+
+#about kbd {
+    border-color: #a9a9a9 #8c8c8c #c6c6c6 #c0c0c0;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px 1px 1px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    padding: 2px 6px;
+}
+
+#aboutClose {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #fff;
+}
+
+.img-left {
+    float: left;
+    margin: 0px 20px 12px 20px;
+}
+
+.img-right {
+    float: right;
+    margin: 0px 20px 12px 20px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aaaaaa;
+}
+
+::-webkit-scrollbar-track {
+    background: #212121;
+}

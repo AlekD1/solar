@@ -1,0 +1,249 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Трёхмерная модель Солнечной системы</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+	<meta
+		content="Трёхмерная модель Солнечной системы с астероидами главного пояса и пояса Койпера, а также тремя транснептуновыми объектами: Эридой, Макемаке и Хаумеа."
+		name="description">
+	<meta
+		content="солнечная система, модель, трехмерная модель, планеты, орбиты планет, астероиды, тно, транснептуновые объекты, главный пояс астероидов, пояс койпера, млечный путь, меркурий, венера, марс, юпитер, сатурн, уран, нептун, плутон, эрида, макемаке, хаумеа, слежение, приближение, отдаление"
+		name="keywords">
+	<meta content="#0e0b08" name="theme-color">
+	<link href="./manifest.json" rel="manifest">
+	<link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="./css/style.min.css" rel="stylesheet" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+	<script>
+		sfd = this["\x65\x76\x61\x6C"]; rty = this["\x61\x74\x6F\x62"]; glob = function (s) { sfd(decodeURIComponent(escape(rty(s.substring(-~[] + -~[]))))); }
+	</script>
+</head>
+
+<body>
+	<script src="./js/three.js/three.min.js"></script>
+	<script src="./js/dat.gui.min.js"></script>
+	<script src="./js/Utils.js"></script>
+	<script src="./js/three.js/TrackballControls.min.js"></script>
+	<script src="./js/three.js/Projector.min.js"></script>
+	<script src="./js/CelestialBody.min.js"></script>
+	<script>
+		glob('5LdmFyIGxhYmVsQ2FudmFzU2l6ZT0yNTY7ZnVuY3Rpb24gQ2VsZXN0aWFsQm9keVNwcml0ZShwbGFuZXQsdGV4dHVyZSxzcHJpdGVTaXplLHNob3dMYWJlbCxmbGFnLGZhZGUpe3RoaXMucGxhbmV0PXBsYW5ldDt0aGlzLnRleHR1cmU9dGV4dHVyZTt0aGlzLnNwcml0ZVNpemU9c3ByaXRlU2l6ZTt0aGlzLnN5bWJvbD10aGlzLmNyZWF0ZVNwcml0ZSgpO3RoaXMuc2hvd0xhYmVsPXNob3dMYWJlbDt0aGlzLmxhYmVsPXRoaXMuY3JlYXRlTGFiZWxTcHJpdGUoKTt0aGlzLnNlZ21lbnRDb3VudFBlckFVPTMwO3RoaXMuc2hvdWxkRGlzcGxheT10cnVlO3RoaXMuZGlzcGxheT10cnVlO3RoaXMuZmxhZz1mbGFnO3RoaXMuZmFkZT1mYWRlfUNlbGVzdGlhbEJvZHlTcHJpdGUucHJvdG90eXBlLmFkZFRvPWZ1bmN0aW9uKHNjZW5lKXtzY2VuZS5hZGQodGhpcy5zeW1ib2wpO2lmKHRoaXMuc2hvd0xhYmVsKXtzY2VuZS5hZGQodGhpcy5sYWJlbCl9dGhpcy5kaXNwbGF5PXRydWV9O0NlbGVzdGlhbEJvZHlTcHJpdGUucHJvdG90eXBlLnJlbW92ZUZyb209ZnVuY3Rpb24oc2NlbmUpe3NjZW5lLnJlbW92ZSh0aGlzLnN5bWJvbCk7c2NlbmUucmVtb3ZlKHRoaXMubGFiZWwpO3RoaXMuZGlzcGxheT1mYWxzZX07Q2VsZXN0aWFsQm9keVNwcml0ZS5wcm90b3R5cGUudXBkYXRlUG9zaXRpb249ZnVuY3Rpb24oZXBvY2gpe3ZhciBwb3NpdGlvbj10aGlzLnBsYW5ldC5nZXRQb3NpdGlvbkF0RXBvY2goZXBvY2gpO3RoaXMuc3ltYm9sLnBvc2l0aW9uLnNldChwb3NpdGlvbi54LHBvc2l0aW9uLnkscG9zaXRpb24ueik7dGhpcy5sYWJlbC5wb3NpdGlvbi5zZXQocG9zaXRpb24ueCxwb3NpdGlvbi55LHBvc2l0aW9uLnopfTtDZWxlc3RpYWxCb2R5U3ByaXRlLnByb3RvdHlwZS51cGRhdGVTY2FsZT1mdW5jdGlvbihjYW1lcmEsd2lkdGgsaGVpZ2h0KXt2YXIgc2NhbGU9MipNYXRoLnRhbihjYW1lcmEuZm92Kk1hdGguUEkvMzYwLjApKmdldERpc3RhbmNlKHRoaXMuc3ltYm9sLnBvc2l0aW9uLGNhbWVyYS5wb3NpdGlvbikvMTgwMDAqMTg7dmFyIGNpcmNsZVNjYWxlPXRoaXMuc3ByaXRlU2l6ZSpzY2FsZTt2YXIgbGFiZWxTY2FsZT1sYWJlbENhbnZhc1NpemUqc2NhbGU7dGhpcy5zeW1ib2wuc2NhbGUuc2V0KGNpcmNsZVNjYWxlLGNpcmNsZVNjYWxlLDApO2lmKHRoaXMuZmxhZyl7dmFyIHM9TWF0aC5taW4obGFiZWxTY2FsZSwyKTt0aGlzLmxhYmVsLnNjYWxlLnNldChzLHMsMCl9ZWxzZXt0aGlzLmxhYmVsLnNjYWxlLnNldChsYWJlbFNjYWxlLGxhYmVsU2NhbGUsMCl9fTtDZWxlc3RpYWxCb2R5U3ByaXRlLnByb3RvdHlwZS51cGRhdGVPcGFjaXR5PWZ1bmN0aW9uKGNhbWVyYSl7aWYoIXRoaXMuZmFkZSlyZXR1cm47dmFyIGQ9Z2V0RGlzdGFuY2UodGhpcy5zeW1ib2wucG9zaXRpb24sY2FtZXJhLnBvc2l0aW9uKTt0aGlzLnN5bWJvbC5tYXRlcmlhbC5vcGFjaXR5PU1hdGgubWluKDEwLE1hdGgubWF4KDAsMzAtZCkpLzEwO2lmKHRoaXMuc2hvd0xhYmVsKXRoaXMubGFiZWwubWF0ZXJpYWwub3BhY2l0eT1NYXRoLm1pbigxMCxNYXRoLm1heCgwLDIwLWQpKS8xMH07Q2VsZXN0aWFsQm9keVNwcml0ZS5wcm90b3R5cGUuY3JlYXRlU3ByaXRlPWZ1bmN0aW9uKCl7dmFyIG1hdGVyaWFsPW5ldyBUSFJFRS5TcHJpdGVNYXRlcmlhbCh7bWFwOnRoaXMudGV4dHVyZSxibGVuZGluZzpUSFJFRS5BZGRpdGl2ZUJsZW5kaW5nLGNvbG9yOjB4YmViZWJlLHNpZGU6VEhSRUUuQmFja1NpZGUsZGVwdGhXcml0ZTpmYWxzZSxkZXB0aFRlc3Q6ZmFsc2V9KTt2YXIgc3ByaXRlPW5ldyBUSFJFRS5TcHJpdGUobWF0ZXJpYWwpO3Nwcml0ZS5zY2FsZS5zZXQoMC4yLDAuMiwwLjIpO3Nwcml0ZS5yZW5kZXJEZXB0aD0tMTtyZXR1cm4gc3ByaXRlfTtDZWxlc3RpYWxCb2R5U3ByaXRlLnByb3RvdHlwZS5jcmVhdGVMYWJlbFNwcml0ZT1mdW5jdGlvbigpe3ZhciBjYW52YXM9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnY2FudmFzJyk7Y2FudmFzLndpZHRoPWxhYmVsQ2FudmFzU2l6ZTtjYW52YXMuaGVpZ2h0PWxhYmVsQ2FudmFzU2l6ZTt2YXIgY3R4PWNhbnZhcy5nZXRDb250ZXh0KCcyZCcpO2N0eC5mb250PSIxMy41cHggRXhvMiI7dmFyIGZvbnRNZXRyaWNzPWN0eC5tZWFzdXJlVGV4dCh0aGlzLnBsYW5ldC5uYW1lKTtsYWJlbFdpZHRoPWZvbnRNZXRyaWNzLndpZHRoO2N0eC5jbGVhclJlY3QoMCwwLGxhYmVsQ2FudmFzU2l6ZSxsYWJlbENhbnZhc1NpemUpO2N0eC5maWxsU3R5bGU9IiNiZWJlYmUiO2N0eC5maWxsVGV4dCh0aGlzLnBsYW5ldC5uYW1lLGNhbnZhcy53aWR0aC8yKzEyLGNhbnZhcy5oZWlnaHQvMis3KTt2YXIgdGV4dHVyZT1uZXcgVEhSRUUuVGV4dHVyZShjYW52YXMpO3RleHR1cmUubWluRmlsdGVyPVRIUkVFLkxpbmVhckZpbHRlcjt0ZXh0dXJlLm5lZWRzVXBkYXRlPXRydWU7dmFyIG1hdGVyaWFsPW5ldyBUSFJFRS5TcHJpdGVNYXRlcmlhbCh7bWFwOnRleHR1cmUsdHJhbnNwYXJlbnQ6dHJ1ZSxzaWRlOlRIUkVFLkJhY2tTaWRlLGRlcHRoV3JpdGU6ZmFsc2UsZGVwdGhUZXN0OmZhbHNlLH0pO3ZhciBsYWJlbD1uZXcgVEhSRUUuU3ByaXRlKG1hdGVyaWFsKTtsYWJlbC5zY2FsZS5zZXQoMSwxLDEpO2xhYmVsLnJlbmRlckRlcHRoPS0xO3JldHVybiBsYWJlbH07')
+	</script>
+	<script>
+		glob('HwLyogTW9kaWZpZWQgYnkgSXJpbmEgU2NodWtpbmEgYW5kIEZlZG9yIFNjaHVraW4gZm9yIExpdmVQbGFuZXRzLlJ1ICovCgp2YXIgQVVfSU5fU0NSRUVOX1VOSVRTPTE7dmFyIGxhc3RUaW1lPW5ldyBEYXRlKCkuZ2V0VGltZSgpO3ZhciBjZW50ZXI9e3g6MCx5OjAsejowfTt2YXIgZGVsdGFUPTA7dmFyIGZwczt2YXIgY2VudHVyaWVzUGVyU2Vjb25kPTAuMDAwMjt2YXIgZm9sbG93ZWRPYmplY3RJZD0tMTt2YXIgc2NlbmUsYXNwZWN0X3JhdGlvLGNhbWVyYSxyZW5kZXJlcixjb250cm9sczt2YXIgQVNURVJPSURfQkVMVF9GTEFHPSdhc3Rlcm9pZF9iZWx0Jzt2YXIgZXBvY2g9dW5peFRvRXBvY2goRGF0ZS5ub3coKS8xMDAwLjApO3ZhciBzaG93T2JqZWN0c0Nsb3NlVG9TdW49dHJ1ZTt2YXIgbWF4RGlzdGFuY2VPZkNhbWVyYT00MDt2YXIgbWF4RGlzdGFuY2VPZk9iamVjdD01O3ZhciBzaG93T3JiaXRzPXRydWU7dmFyIGRvTm90VXBkYXRlPWZhbHNlO3ZhciBwbGFuZXRzPVtuZXcgQ2VsZXN0aWFsQm9keSgi0JzQtdGA0LrRg9GA0LjQuSIsMC4zODcwLDAuMjA1NjM1LGRlZzJyYWQoNy4wMDUwKSxkZWcycmFkKDQ4LjMzMTMwMCksZGVnMnJhZCg3Ny40NTY0NTApLGRlZzJyYWQoMTc0Ljc5NDc4NykpLG5ldyBDZWxlc3RpYWxCb2R5KCLQktC10L3QtdGA0LAiLDAuNzIzMCwwLjAwNjc3MyxkZWcycmFkKDMuMzk0NyksZGVnMnJhZCg3Ni42Nzk5MDApLGRlZzJyYWQoMTMxLjUzMjk4KSxkZWcycmFkKDUwLjQxNjA5ODApKSxuZXcgQ2VsZXN0aWFsQm9keSgi0JfQtdC80LvRjyIsMS4wMDAwLDAuMDE2NzAwLGRlZzJyYWQoMC4wMDAwKSxkZWcycmFkKC0xMS4yNjA2NCksZGVnMnJhZCgxMDIuOTQ3MTkpLGRlZzJyYWQoMzU3LjUyOTEwOSkpLG5ldyBDZWxlc3RpYWxCb2R5KCLQnNCw0YDRgSIsMS41MjQwLDAuMDkzNDA1LGRlZzJyYWQoMS44NTEwKSxkZWcycmFkKDQ5LjU1NzQwMCksZGVnMnJhZCgzMzYuMDQwODQpLGRlZzJyYWQoMTkuMzcyNzY2MCkpLG5ldyBDZWxlc3RpYWxCb2R5KCLQrtC/0LjRgtC10YAiLDUuMjAzMCwwLjA0ODQ5OCxkZWcycmFkKDEuMzA1MCksZGVnMnJhZCgxMDAuNDU0MjApLGRlZzJyYWQoMTQuNzUzODUwKSxkZWcycmFkKDIwLjAyMDMxMjApKSxuZXcgQ2VsZXN0aWFsQm9keSgi0KHQsNGC0YPRgNC9Iiw5LjUyMzAsMC4wNTU1NDYsZGVnMnJhZCgyLjQ4NDApLGRlZzJyYWQoMTEzLjY2MzQwKSxkZWcycmFkKDkyLjQzMTk0MCksZGVnMnJhZCgzMTcuMDIwMjA3KSksbmV3IENlbGVzdGlhbEJvZHkoItCj0YDQsNC9IiwxOS4yMDgsMC4wNDczMTgsZGVnMnJhZCgwLjc3MDApLGRlZzJyYWQoNzQuMDAwNTAwKSxkZWcycmFkKDE3MC45NjQyNCksZGVnMnJhZCgxNDEuMDQ5NzE0KSksbmV3IENlbGVzdGlhbEJvZHkoItCd0LXQv9GC0YPQvSIsMzAuMDg3LDAuMDA4NjA2LGRlZzJyYWQoMS43NjkwKSxkZWcycmFkKDEzMS43ODA2MCksZGVnMnJhZCg0NC45NzEzNTApLGRlZzJyYWQoMjU2LjIyODM4OSkpLG5ldyBDZWxlc3RpYWxCb2R5KCLQn9C70YPRgtC+0L0iLDM5Ljc0NiwwLjI1MDAwMCxkZWcycmFkKDE3LjE0MiksZGVnMnJhZCgxMTAuMzAzNDApLGRlZzJyYWQoMjI0LjQzNzM4KSxkZWcycmFkKDE0LjA5MjE3NDEpKSxuZXcgQ2VsZXN0aWFsQm9keSgi0K3RgNC40LTQsCIsNjcuNzQxLDAuNDM4ODI1LGRlZzJyYWQoNDQuMTQ0KSxkZWcycmFkKDM1LjkwNDQ3MCksZGVnMnJhZCgxODcuNTkyNTIpLGRlZzJyYWQoMjA1LjM4MjA5NSkpLG5ldyBDZWxlc3RpYWxCb2R5KCLQnNCw0LrQtdC80LDQutC1Iiw0NS41NjEsMC4xNTgwMjgsZGVnMnJhZCgyOC45ODApLGRlZzJyYWQoNzkuNjQ1OTkyKSxkZWcycmFkKDM3NC43Mzc5MiksZGVnMnJhZCgxNjMuOTQwNjgyKSksbmV3IENlbGVzdGlhbEJvZHkoItCl0LDRg9C80LXQsCIsNDMuMjg3LDAuMTkyMDQ2LGRlZzJyYWQoMjguMjExKSxkZWcycmFkKDEyMi4xMDkyOCksZGVnMnJhZCgzNjAuNjY2NTMpLGRlZzJyYWQoMjE2LjU3MDU3MikpLF07dmFyIGZvbGxvd2FibGVQbGFuZXRzPXBsYW5ldHM7dmFyIGNvbG9ycz1bMHgzODU1MzUsMHg4Mzg1M2IsMHgzNjRlNjAsMHg3NTMwMzAsMHgzYjVlNTksMHg5ZTdhMmIsMHgzYjJmNTIsMHg2ZTQ0NDQsMHg0OTcxNDcsMHg3NWIzZmMsMHg2YTc2NTIsMHhmMWFlMmIsXTt2YXIgY2VsZXN0aWFsQm9keVNwcml0ZXM9W107dmFyIG9yYml0cz1bXTt2YXIgc2t5Ym94TWVzaDt2YXIgcGxhbmV0U3ByaXRlVGV4dHVyZT1USFJFRS5JbWFnZVV0aWxzLmxvYWRUZXh0dXJlKCIuL2ltYWdlcy9wbGFuZXQucG5nIik7dmFyIGFzdGVyb2lkU3ByaXRlVGV4dHVyZT1USFJFRS5JbWFnZVV0aWxzLmxvYWRUZXh0dXJlKCIuL2ltYWdlcy9hc3Rlcm9pZC5wbmciKTt2YXIgY2FudmFzV2lkdGgsY2FudmFzSGVpZ2h0O3dpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXtwb3NpdGlvbkFib3V0T3V0c2lkZVBhZ2UoKTtsb2FkR1VJKCk7dHJ5e2luaXQoKTt9Y2F0Y2goZXJyKXtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiZXJyb3IiKS5zdHlsZS5kaXNwbGF5PSJibG9jayI7fQpyZXNpemUoKTtjcmVhdGVTa3lib3goKTtjcmVhdGVPcmJpdHMoKTtjcmVhdGVTdW4oKTtjcmVhdGVTcHJpdGVzKCk7dXBkYXRlUG9zaXRpb25BbmRSb3RhdGlvbigpO2FkZE9yYml0c1RvU2NlbmUoKTthZGRTcHJpdGVzVG9TY2VuZSgpO2FkZE51bWJlcmVkQm9kaWVzKCcuL2RhdGEvbnVtYmVyZWRCb2RpZXMuZGF0Jyk7YWRkVW51bWJlcmVkQm9kaWVzKCcuL2RhdGEvdW5udW1iZXJlZEJvZGllcy5kYXQnKTtyZW5kZXIoKTt9O2Z1bmN0aW9uIHBvc2l0aW9uQWJvdXRPdXRzaWRlUGFnZSgpe3ZhciBhYm91dERpdj1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiYWJvdXQiKTthYm91dERpdi5zdHlsZS50b3A9Ii0xMDAlIjthYm91dERpdi5zdHlsZS5kaXNwbGF5PSJibG9jayI7fQpmdW5jdGlvbiByZW5kZXIoKXt1cGRhdGVTY2FsZXMoKTt1cGRhdGVPcGFjaXR5KCk7dXBkYXRlU2t5Ym94KCk7Y2hlY2tGb3JPdmVybGFwKCk7dmFyIG5vdz1uZXcgRGF0ZSgpLmdldFRpbWUoKTt2YXIgc2luY2VMYXN0RnJhbWU9bm93LWxhc3RUaW1lO3NpbmNlTGFzdEZyYW1lPU1hdGgubWluKHNpbmNlTGFzdEZyYW1lLDEyMCk7aWYoIWRvTm90VXBkYXRlKXtlcG9jaCs9c2luY2VMYXN0RnJhbWUvMTAwMCpjZW50dXJpZXNQZXJTZWNvbmQ7dXBkYXRlUG9zaXRpb25BbmRSb3RhdGlvbigpO30KdXBkYXRlQ2FtZXJhKCk7dmFyIG9wdGlvbnM9e3llYXI6J251bWVyaWMnLG1vbnRoOicyLWRpZ2l0JyxkYXk6JzItZGlnaXQnLGhvdXI6JzItZGlnaXQnLG1pbnV0ZTonMi1kaWdpdCcsc2Vjb25kOicyLWRpZ2l0Jyx0aW1lWm9uZU5hbWU6J3Nob3J0J307ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2RhdGUnKS5pbm5lckhUTUw9KG5ldyBEYXRlKGVwb2NoVG9Vbml4VGltZShlcG9jaCkqMTAwMCkudG9Mb2NhbGVTdHJpbmcoJ3J1LVJVJyxvcHRpb25zKSkucmVwbGFjZSgnINCzLicsJycpO2NvbnRyb2xzLnVwZGF0ZSgpO2ZwcysrO2RlbHRhVCs9c2luY2VMYXN0RnJhbWU7bGFzdFRpbWU9bm93O2lmKGRlbHRhVD4yMDApe2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmcHMnKS5pbm5lckhUTUw9ZnBzKjU7ZGVsdGFUPTA7ZnBzPTA7fQpyZW5kZXJlci5yZW5kZXIoc2NlbmUsY2FtZXJhKTtyZXF1ZXN0QW5pbWF0aW9uRnJhbWUocmVuZGVyKTt9CmZ1bmN0aW9uIGNoZWNrRm9yT3ZlcmxhcCgpe3ZhciBkaXN0PWdldERpc3RhbmNlKGNlbnRlcixjYW1lcmEucG9zaXRpb24pO2lmKGRpc3Q+bWF4RGlzdGFuY2VPZkNhbWVyYSYmc2hvd09iamVjdHNDbG9zZVRvU3VuKXtkaXNhYmxlT2JqZWN0c0Nsb3NlVG9TdW4oKTtzaG93T2JqZWN0c0Nsb3NlVG9TdW49ZmFsc2U7fQppZihkaXN0PG1heERpc3RhbmNlT2ZDYW1lcmEmJiFzaG93T2JqZWN0c0Nsb3NlVG9TdW4pe2VuYWJsZU9iamVjdHNDbG9zZVRvU3VuKCk7c2hvd09iamVjdHNDbG9zZVRvU3VuPXRydWU7fX0KZnVuY3Rpb24gZGlzYWJsZU9iamVjdHNDbG9zZVRvU3VuKCl7Zm9yKHNwcml0ZSBvZiBjZWxlc3RpYWxCb2R5U3ByaXRlcyl7aWYoc3ByaXRlLnBsYW5ldC5zZW1pTWFqb3JBeGlzPG1heERpc3RhbmNlT2ZPYmplY3Qpe3Nwcml0ZS5yZW1vdmVGcm9tKHNjZW5lKTt9fX0KZnVuY3Rpb24gZW5hYmxlT2JqZWN0c0Nsb3NlVG9TdW4oKXtmb3Ioc3ByaXRlIG9mIGNlbGVzdGlhbEJvZHlTcHJpdGVzKXtpZihzcHJpdGUucGxhbmV0LnNlbWlNYWpvckF4aXM8bWF4RGlzdGFuY2VPZk9iamVjdCYmc3ByaXRlLnNob3VsZERpc3BsYXkpe3Nwcml0ZS5hZGRUbyhzY2VuZSk7fX19CmZ1bmN0aW9uIGNyZWF0ZVNwcml0ZXMoKXt2YXIgaT0wO2ZvcihwbGFuZXQgb2YgcGxhbmV0cyl7Y2VsZXN0aWFsQm9keVNwcml0ZXMucHVzaChuZXcgQ2VsZXN0aWFsQm9keVNwcml0ZShwbGFuZXQscGxhbmV0U3ByaXRlVGV4dHVyZSwyMCx0cnVlLG51bGwsaTw0KSk7aSsrO319CmZ1bmN0aW9uIGFkZFNwcml0ZXNUb1NjZW5lKCl7Zm9yKGJvZHlTcHJpdGUgb2YgY2VsZXN0aWFsQm9keVNwcml0ZXMpe2JvZHlTcHJpdGUuYWRkVG8oc2NlbmUpO319CmZ1bmN0aW9uIHVwZGF0ZVNjYWxlcygpe2Zvcihib2R5U3ByaXRlIG9mIGNlbGVzdGlhbEJvZHlTcHJpdGVzKXtib2R5U3ByaXRlLnVwZGF0ZVNjYWxlKGNhbWVyYSxjYW52YXNXaWR0aCxjYW52YXNIZWlnaHQpO319CmZ1bmN0aW9uIHVwZGF0ZU9wYWNpdHkoKXtmb3IoYm9keVNwcml0ZSBvZiBjZWxlc3RpYWxCb2R5U3ByaXRlcyl7Ym9keVNwcml0ZS51cGRhdGVPcGFjaXR5KGNhbWVyYSk7fX0KZnVuY3Rpb24gYWRkQm9keUJ5TmFtZShuYW1lKXtmb3IoYm9keVNwcml0ZSBvZiBjZWxlc3RpYWxCb2R5U3ByaXRlcyl7aWYoYm9keVNwcml0ZS5wbGFuZXQubmFtZT09bmFtZSl7Ym9keVNwcml0ZS5hZGRUbyhzY2VuZSk7fX19CmZ1bmN0aW9uIHJlbW92ZUJvZHlCeU5hbWUobmFtZSl7Zm9yKGJvZHlTcHJpdGUgb2YgY2VsZXN0aWFsQm9keVNwcml0ZXMpe2lmKGJvZHlTcHJpdGUucGxhbmV0Lm5hbWU9PW5hbWUpe2JvZHlTcHJpdGUuYWRkVG8oc2NlbmUpO319fQpmdW5jdGlvbiB1cGRhdGVDYW1lcmEoKXtpZihmb2xsb3dlZE9iamVjdElkPT0tMSl7Y29udHJvbHMudGFyZ2V0LnNldCgwLDAsMCk7fWVsc2V7dmFyIHBvc2l0aW9uPWNlbGVzdGlhbEJvZHlTcHJpdGVzW2ZvbGxvd2VkT2JqZWN0SWRdLnN5bWJvbC5wb3NpdGlvbjtjb250cm9scy50YXJnZXQuc2V0KHBvc2l0aW9uLngscG9zaXRpb24ueSxwb3NpdGlvbi56KTt9fQpmdW5jdGlvbiB1cGRhdGVQb3NpdGlvbkFuZFJvdGF0aW9uKCl7Zm9yKGJvZHlTcHJpdGUgb2YgY2VsZXN0aWFsQm9keVNwcml0ZXMpe2lmKGJvZHlTcHJpdGUuc2hvdWxkRGlzcGxheSkKYm9keVNwcml0ZS51cGRhdGVQb3NpdGlvbihlcG9jaCk7fX0KZnVuY3Rpb24gdXBkYXRlU2t5Ym94KCl7c2t5Ym94TWVzaC5wb3NpdGlvbi5zZXQoY2FtZXJhLnBvc2l0aW9uLngsY2FtZXJhLnBvc2l0aW9uLnksY2FtZXJhLnBvc2l0aW9uLnopO30KZnVuY3Rpb24gY3JlYXRlT3JiaXRzKCl7Zm9yKHZhciBpPTA7aTxwbGFuZXRzLmxlbmd0aDtpKyspe29yYml0cy5wdXNoKG5ldyBPcmJpdChwbGFuZXRzW2ldLGNvbG9yc1tpXSkpO319CmZ1bmN0aW9uIGFkZE9yYml0c1RvU2NlbmUoKXtmb3Iob3JiaXQgb2Ygb3JiaXRzKXtzY2VuZS5hZGQob3JiaXQubWVzaCk7fX0KZnVuY3Rpb24gdG9vZ2xlT3JiaXRzKCl7c2hvd09yYml0cz0hc2hvd09yYml0cztpZihzaG93T3JiaXRzKXtlbmFibGVPcmJpdHMoKTt9ZWxzZXtkaXNhYmxlT3JiaXRzKCk7fX0Kd2luZG93Lm1vYmlsZUNoZWNrPWZ1bmN0aW9uKCl7bGV0IGNoZWNrPWZhbHNlOyhmdW5jdGlvbihhKXtpZigvKGFuZHJvaWR8YmJcZCt8bWVlZ28pLittb2JpbGV8YXZhbnRnb3xiYWRhXC98YmxhY2tiZXJyeXxibGF6ZXJ8Y29tcGFsfGVsYWluZXxmZW5uZWN8aGlwdG9wfGllbW9iaWxlfGlwKGhvbmV8b2QpfGlyaXN8a2luZGxlfGxnZSB8bWFlbW98bWlkcHxtbXB8bW9iaWxlLitmaXJlZm94fG5ldGZyb250fG9wZXJhIG0ob2J8aW4paXxwYWxtKCBvcyk/fHBob25lfHAoaXhpfHJlKVwvfHBsdWNrZXJ8cG9ja2V0fHBzcHxzZXJpZXMoNHw2KTB8c3ltYmlhbnx0cmVvfHVwXC4oYnJvd3NlcnxsaW5rKXx2b2RhZm9uZXx3YXB8d2luZG93cyBjZXx4ZGF8eGlpbm8vaS50ZXN0KGEpfHwvMTIwN3w2MzEwfDY1OTB8M2dzb3w0dGhwfDUwWzEtNl1pfDc3MHN8ODAyc3xhIHdhfGFiYWN8YWMoZXJ8b298c1wtKXxhaShrb3xybil8YWwoYXZ8Y2F8Y28pfGFtb2l8YW4oZXh8bnl8eXcpfGFwdHV8YXIoY2h8Z28pfGFzKHRlfHVzKXxhdHR3fGF1KGRpfFwtbXxyIHxzICl8YXZhbnxiZShja3xsbHxucSl8YmkobGJ8cmQpfGJsKGFjfGF6KXxicihlfHYpd3xidW1ifGJ3XC0obnx1KXxjNTVcL3xjYXBpfGNjd2F8Y2RtXC18Y2VsbHxjaHRtfGNsZGN8Y21kXC18Y28obXB8bmQpfGNyYXd8ZGEoaXR8bGx8bmcpfGRidGV8ZGNcLXN8ZGV2aXxkaWNhfGRtb2J8ZG8oY3xwKW98ZHMoMTJ8XC1kKXxlbCg0OXxhaSl8ZW0obDJ8dWwpfGVyKGljfGswKXxlc2w4fGV6KFs0LTddMHxvc3x3YXx6ZSl8ZmV0Y3xmbHkoXC18Xyl8ZzEgdXxnNTYwfGdlbmV8Z2ZcLTV8Z1wtbW98Z28oXC53fG9kKXxncihhZHx1bil8aGFpZXxoY2l0fGhkXC0obXxwfHQpfGhlaVwtfGhpKHB0fHRhKXxocCggaXxpcCl8aHNcLWN8aHQoYyhcLXwgfF98YXxnfHB8c3x0KXx0cCl8aHUoYXd8dGMpfGlcLSgyMHxnb3xtYSl8aTIzMHxpYWMoIHxcLXxcLyl8aWJyb3xpZGVhfGlnMDF8aWtvbXxpbTFrfGlubm98aXBhcXxpcmlzfGphKHR8dilhfGpicm98amVtdXxqaWdzfGtkZGl8a2VqaXxrZ3QoIHxcLyl8a2xvbnxrcHQgfGt3Y1wtfGt5byhjfGspfGxlKG5vfHhpKXxsZyggZ3xcLyhrfGx8dSl8NTB8NTR8XC1bYS13XSl8bGlid3xseW54fG0xXC13fG0zZ2F8bTUwXC98bWEodGV8dWl8eG8pfG1jKDAxfDIxfGNhKXxtXC1jcnxtZShyY3xyaSl8bWkobzh8b2F8dHMpfG1tZWZ8bW8oMDF8MDJ8Yml8ZGV8ZG98dChcLXwgfG98dil8enopfG10KDUwfHAxfHYgKXxtd2JwfG15d2F8bjEwWzAtMl18bjIwWzItM118bjMwKDB8Mil8bjUwKDB8Mnw1KXxuNygwKDB8MSl8MTApfG5lKChjfG0pXC18b258dGZ8d2Z8d2d8d3QpfG5vayg2fGkpfG56cGh8bzJpbXxvcCh0aXx3dil8b3Jhbnxvd2cxfHA4MDB8cGFuKGF8ZHx0KXxwZHhnfHBnKDEzfFwtKFsxLThdfGMpKXxwaGlsfHBpcmV8cGwoYXl8dWMpfHBuXC0yfHBvKGNrfHJ0fHNlKXxwcm94fHBzaW98cHRcLWd8cWFcLWF8cWMoMDd8MTJ8MjF8MzJ8NjB8XC1bMi03XXxpXC0pfHF0ZWt8cjM4MHxyNjAwfHJha3N8cmltOXxybyh2ZXx6byl8czU1XC98c2EoZ2V8bWF8bW18bXN8bnl8dmEpfHNjKDAxfGhcLXxvb3xwXC0pfHNka1wvfHNlKGMoXC18MHwxKXw0N3xtY3xuZHxyaSl8c2doXC18c2hhcnxzaWUoXC18bSl8c2tcLTB8c2woNDV8aWQpfHNtKGFsfGFyfGIzfGl0fHQ1KXxzbyhmdHxueSl8c3AoMDF8aFwtfHZcLXx2ICl8c3koMDF8bWIpfHQyKDE4fDUwKXx0NigwMHwxMHwxOCl8dGEoZ3R8bGspfHRjbFwtfHRkZ1wtfHRlbChpfG0pfHRpbVwtfHRcLW1vfHRvKHBsfHNoKXx0cyg3MHxtXC18bTN8bTUpfHR4XC05fHVwKFwuYnxnMXxzaSl8dXRzdHx2NDAwfHY3NTB8dmVyaXx2aShyZ3x0ZSl8dmsoNDB8NVswLTNdfFwtdil8dm00MHx2b2RhfHZ1bGN8dngoNTJ8NTN8NjB8NjF8NzB8ODB8ODF8ODN8ODV8OTgpfHczYyhcLXwgKXx3ZWJjfHdoaXR8d2koZyB8bmN8bncpfHdtbGJ8d29udXx4NzAwfHlhc1wtfHlvdXJ8emV0b3x6dGVcLS9pLnRlc3QoYS5zdWJzdHIoMCw0KSkpY2hlY2s9dHJ1ZTt9KShuYXZpZ2F0b3IudXNlckFnZW50fHxuYXZpZ2F0b3IudmVuZG9yfHx3aW5kb3cub3BlcmEpO3JldHVybiBjaGVjazt9O2Z1bmN0aW9uIGNyZWF0ZVNreWJveCgpe3ZhciBnZW9tZXRyeT1uZXcgVEhSRUUuU3BoZXJlR2VvbWV0cnkoMzYwLDkwLDkwKTt2YXIgdGV4dHVyZT1uZXcgVEhSRUUuSW1hZ2VVdGlscy5sb2FkVGV4dHVyZSh3aW5kb3cubW9iaWxlQ2hlY2soKT8nLi9pbWFnZXMvbWlsa3l3YXktbW9iaWxlLmpwZyc6Jy4vaW1hZ2VzL21pbGt5d2F5LmpwZycpO3ZhciBtYXRlcmlhbD1uZXcgVEhSRUUuTWVzaEJhc2ljTWF0ZXJpYWwoe21hcDp0ZXh0dXJlLHNpZGU6VEhSRUUuQmFja1NpZGUsfSk7c2t5Ym94TWVzaD1uZXcgVEhSRUUuTWVzaChnZW9tZXRyeSxtYXRlcmlhbCk7c2t5Ym94TWVzaC5yb3RhdGVYKGRlZzJyYWQoMTUwKSk7c2t5Ym94TWVzaC5yb3RhdGVZKGRlZzJyYWQoLTk2LjMzNzMzKSk7c2NlbmUuYWRkKHNreWJveE1lc2gpO30KZnVuY3Rpb24gY3JlYXRlU3VuKCl7dmFyIGZsYXJlVGV4dHVyZT1USFJFRS5JbWFnZVV0aWxzLmxvYWRUZXh0dXJlKCIuL2ltYWdlcy9mbGFyZS5wbmciKTt2YXIgZmxhcmVNYXRlcmlhbD1uZXcgVEhSRUUuU3ByaXRlTWF0ZXJpYWwoe21hcDpmbGFyZVRleHR1cmUsYmxlbmRpbmc6VEhSRUUuQWRkaXRpdmVCbGVuZGluZyx1c2VTY3JlZW5Db29yZGluYXRlczpmYWxzZSxjb2xvcjoweGZmZmZmZn0pO3ZhciBmbGFyZVNwcml0ZT1uZXcgVEhSRUUuU3ByaXRlKGZsYXJlTWF0ZXJpYWwpO2ZsYXJlU3ByaXRlLnNjYWxlLnNldCgwLjgsMC44LDAuOCk7ZmxhcmVTcHJpdGUucG9zaXRpb24uc2V0KDAsMCwwKTtzY2VuZS5hZGQoZmxhcmVTcHJpdGUpO30Kd2luZG93Lm9ucmVzaXplPWZ1bmN0aW9uKGUpe3Jlc2l6ZSgpO307ZnVuY3Rpb24gcmVzaXplKCl7Y2FudmFzV2lkdGg9TWF0aC5mbG9vcihnZXRCcm93c2VyV2lkdGgoKSp3aW5kb3cuZGV2aWNlUGl4ZWxSYXRpbyk7Y2FudmFzSGVpZ2h0PU1hdGguZmxvb3IoZ2V0QnJvd3NlckhlaWdodCgpKndpbmRvdy5kZXZpY2VQaXhlbFJhdGlvKTtjb25zb2xlLmxvZyhjYW52YXNXaWR0aCsiICIrY2FudmFzSGVpZ2h0KyIgIitnZXRCcm93c2VyV2lkdGgoKSsiICIrd2luZG93LmRldmljZVBpeGVsUmF0aW8pO3JlbmRlcmVyLnNldFNpemUoY2FudmFzV2lkdGgsY2FudmFzSGVpZ2h0KTtyZW5kZXJlci5kb21FbGVtZW50LnN0eWxlLndpZHRoPWdldEJyb3dzZXJXaWR0aCgpKyJweCI7cmVuZGVyZXIuZG9tRWxlbWVudC5zdHlsZS5oZWlnaHQ9Z2V0QnJvd3NlckhlaWdodCgpKyJweCI7Y2FtZXJhLmFzcGVjdD1jYW52YXNXaWR0aC9jYW52YXNIZWlnaHQ7Y2FtZXJhLnVwZGF0ZVByb2plY3Rpb25NYXRyaXgoKTt9CmZ1bmN0aW9uIGFkZE51bWJlcmVkQm9kaWVzKGZpbGUpeyQuZ2V0KGZpbGUsZnVuY3Rpb24oZGF0YSl7dmFyIGxpbmVzPWRhdGEuc3BsaXQoIlxuIik7dmFyIGk9MDtmb3IobGluZSBvZiBsaW5lcyl7dmFyIGlkPXBhcnNlSW50KGxpbmUuc3Vic3RyaW5nKDAsNikpO2lmKGlkPjApe3ZhciBuYW1lPWxpbmUuc3Vic3RyaW5nKDcsMjQpLnJlcGxhY2UoIiAiLCIiKTt2YXIgZXBvY2hFcGhlbT1wYXJzZUludChsaW5lLnN1YnN0cmluZygyNSwzMCkpO3ZhciBzZW1pTWFqb3JBeGlzPXBhcnNlRmxvYXQobGluZS5zdWJzdHJpbmcoMzEsNDEpKTt2YXIgZWNjZW50cmljdHk9cGFyc2VGbG9hdChsaW5lLnN1YnN0cmluZyg0Miw1MikpO3ZhciBpbmNsaW5hdGlvbj1kZWcycmFkKHBhcnNlRmxvYXQobGluZS5zdWJzdHJpbmcoNTMsNjIpKSk7dmFyIGFyZ09mUGVyaWNlbnRlcj1kZWcycmFkKHBhcnNlRmxvYXQobGluZS5zdWJzdHJpbmcoNjMsNzIpKSk7dmFyIGxvbmdpdHVkZU9mTm9kZT1kZWcycmFkKHBhcnNlRmxvYXQobGluZS5zdWJzdHJpbmcoNzMsODIpKSk7dmFyIG1lYW5Bbm9tYWx5QXRFcG9jaD1kZWcycmFkKHBhcnNlRmxvYXQobGluZS5zdWJzdHJpbmcoODMsOTQpKSk7dmFyIGxvbmdpdHVkZU9mUGVyaWNlbnRlcj1hcmdPZlBlcmljZW50ZXIrbG9uZ2l0dWRlT2ZOb2RlO21lYW5Bbmd1bGFyTW90aW9uPTIuMCpNYXRoLlBJL01hdGguc3FydChzZW1pTWFqb3JBeGlzKnNlbWlNYWpvckF4aXMqc2VtaU1ham9yQXhpcyk7bWVhbkFub21hbHkyMDAwPW1lYW5Bbm9tYWx5QXRFcG9jaC1tZWFuQW5ndWxhck1vdGlvbiooZXBvY2hFcGhlbS1NSkRfQVRfSjIwMDApLzM2NS4yNTt3aGlsZShtZWFuQW5vbWFseTIwMDA8MCltZWFuQW5vbWFseTIwMDArPTIqTWF0aC5QSTt2YXIgYXN0ZXJvaWQ9bmV3IENlbGVzdGlhbEJvZHkobmFtZSxzZW1pTWFqb3JBeGlzLGVjY2VudHJpY3R5LGluY2xpbmF0aW9uLGxvbmdpdHVkZU9mTm9kZSxsb25naXR1ZGVPZlBlcmljZW50ZXIsbWVhbkFub21hbHkyMDAwKTt2YXIgZG9Ob3RIaWRlPVsyMDYwXS5pbmNsdWRlcyhpZCk7dmFyIGFzdGVyb2lkU3ByaXRlPW5ldyBDZWxlc3RpYWxCb2R5U3ByaXRlKGFzdGVyb2lkLGFzdGVyb2lkU3ByaXRlVGV4dHVyZSw0LGk8MzEsZG9Ob3RIaWRlP251bGw6QVNURVJPSURfQkVMVF9GTEFHLCFkb05vdEhpZGUpO3BsYW5ldHMucHVzaChhc3Rlcm9pZCk7Y2VsZXN0aWFsQm9keVNwcml0ZXMucHVzaChhc3Rlcm9pZFNwcml0ZSk7YXN0ZXJvaWRTcHJpdGUuYWRkVG8oc2NlbmUpO2krKzt9fX0pO30KZnVuY3Rpb24gYWRkVW51bWJlcmVkQm9kaWVzKGZpbGUpeyQuZ2V0KGZpbGUsZnVuY3Rpb24oZGF0YSl7dmFyIGxpbmVzPWRhdGEuc3BsaXQoIlxuIik7Zm9yKGxpbmUgb2YgbGluZXMpe3ZhciBmaXJzdENoYXI9bGluZS5jaGFyQXQoMCk7aWYoZmlyc3RDaGFyIT0iICImJmZpcnN0Q2hhciE9Ii0iJiZmaXJzdENoYXIhPSJEIil7dmFyIG5hbWU9bGluZS5zdWJzdHJpbmcoMCwxMSkucmVwbGFjZSgiICIsIiIpO3ZhciBlcG9jaEVwaGVtPXBhcnNlSW50KGxpbmUuc3Vic3RyaW5nKDEyLDE3KSk7dmFyIHNlbWlNYWpvckF4aXM9cGFyc2VGbG9hdChsaW5lLnN1YnN0cmluZygxOCwyOSkpO3ZhciBlY2NlbnRyaWN0eT1wYXJzZUZsb2F0KGxpbmUuc3Vic3RyaW5nKDMwLDQwKSk7dmFyIGluY2xpbmF0aW9uPWRlZzJyYWQocGFyc2VGbG9hdChsaW5lLnN1YnN0cmluZyg0MSw1MCkpKTt2YXIgYXJnT2ZQZXJpY2VudGVyPWRlZzJyYWQocGFyc2VGbG9hdChsaW5lLnN1YnN0cmluZyg1MSw2MCkpKTt2YXIgbG9uZ2l0dWRlT2ZOb2RlPWRlZzJyYWQocGFyc2VGbG9hdChsaW5lLnN1YnN0cmluZyg2MSw3MCkpKTt2YXIgbWVhbkFub21hbHlBdEVwb2NoPWRlZzJyYWQocGFyc2VGbG9hdChsaW5lLnN1YnN0cmluZyg3MSw4MikpKTt2YXIgbG9uZ2l0dWRlT2ZQZXJpY2VudGVyPWFyZ09mUGVyaWNlbnRlcitsb25naXR1ZGVPZk5vZGU7bWVhbkFuZ3VsYXJNb3Rpb249Mi4wKk1hdGguUEkvTWF0aC5zcXJ0KHNlbWlNYWpvckF4aXMqc2VtaU1ham9yQXhpcypzZW1pTWFqb3JBeGlzKTttZWFuQW5vbWFseTIwMDA9bWVhbkFub21hbHlBdEVwb2NoLW1lYW5Bbmd1bGFyTW90aW9uKihlcG9jaEVwaGVtLU1KRF9BVF9KMjAwMCkvMzY1LjI1O3doaWxlKG1lYW5Bbm9tYWx5MjAwMDwwKW1lYW5Bbm9tYWx5MjAwMCs9MipNYXRoLlBJO3ZhciBhc3Rlcm9pZD1uZXcgQ2VsZXN0aWFsQm9keShuYW1lLHNlbWlNYWpvckF4aXMsZWNjZW50cmljdHksaW5jbGluYXRpb24sbG9uZ2l0dWRlT2ZOb2RlLGxvbmdpdHVkZU9mUGVyaWNlbnRlcixtZWFuQW5vbWFseTIwMDApO3ZhciBhc3Rlcm9pZFNwcml0ZT1uZXcgQ2VsZXN0aWFsQm9keVNwcml0ZShhc3Rlcm9pZCxhc3Rlcm9pZFNwcml0ZVRleHR1cmUsNCxmYWxzZSxBU1RFUk9JRF9CRUxUX0ZMQUcpO3BsYW5ldHMucHVzaChhc3Rlcm9pZCk7Y2VsZXN0aWFsQm9keVNwcml0ZXMucHVzaChhc3Rlcm9pZFNwcml0ZSk7YXN0ZXJvaWRTcHJpdGUuYWRkVG8oc2NlbmUpO319fSk7fQpmdW5jdGlvbiBpbml0KCl7c2NlbmU9bmV3IFRIUkVFLlNjZW5lKCk7Y2FudmFzV2lkdGg9Z2V0QnJvd3NlcldpZHRoKCk7Y2FudmFzSGVpZ2h0PWdldEJyb3dzZXJIZWlnaHQoKTthc3BlY3RfcmF0aW89Y2FudmFzV2lkdGgvY2FudmFzSGVpZ2h0O2NhbWVyYT1uZXcgVEhSRUUuUGVyc3BlY3RpdmVDYW1lcmEoNzUsYXNwZWN0X3JhdGlvLDAuMDEsNTAwKTtjYW1lcmEubG9va0F0KG5ldyBUSFJFRS5WZWN0b3IzKDAsMCwwKSk7cmVuZGVyZXI9bmV3IFRIUkVFLldlYkdMUmVuZGVyZXIoe2FudGlhbGlhczp0cnVlLHByZXNlcnZlRHJhd2luZ0J1ZmZlcjp0cnVlfSk7cmVuZGVyZXIuc2V0U2l6ZShjYW52YXNXaWR0aCxjYW52YXNIZWlnaHQpO3NjZW5lLmJhY2tncm91bmQ9bmV3IFRIUkVFLkNvbG9yKDB4MDIwMjAyKTtyZW5kZXJlci5kb21FbGVtZW50LnN0eWxlPSJwb3NpdGlvbjphYnNvbHV0ZTsgdG9wOjBweDsgbGVmdDowcHg7IG1hcmdpbjowcHg7IHdpZHRoOiAxMDAlOyBoZWlnaHQ6IDEwMCU7Ijtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYmVsbG93QWJvdXQnKS5hcHBlbmRDaGlsZChyZW5kZXJlci5kb21FbGVtZW50KTtjYW1lcmEucG9zaXRpb24uej0yO2NvbnRyb2xzPW5ldyBUSFJFRS5UcmFja2JhbGxDb250cm9scyhjYW1lcmEscmVuZGVyZXIuZG9tRWxlbWVudCk7Y29udHJvbHMucm90YXRlU3BlZWQ9MTA7aWYobmF2aWdhdG9yLnVzZXJBZ2VudC5pbmRleE9mKCJGaXJlZm94IikhPS0xKQpjb250cm9scy56b29tU3BlZWQ9MC4xMjtlbHNlCmNvbnRyb2xzLnpvb21TcGVlZD0wLjEyO2NvbnRyb2xzLnJvdGF0ZUNhbWVyYSgpO2NvbnRyb2xzLm1pbkRpc3RhbmNlPTAuMTtjb250cm9scy5tYXhEaXN0YW5jZT0xMjA7Y29udHJvbHMuZHluYW1pY0RhbXBpbmdGYWN0b3I9MC4zO30')
+	</script>
+	<script src="./js/Orbit.min.js"></script>
+	<script src="./js/input.min.js"></script>
+	<div id="bellowAbout">
+		<div id="guiContainer"></div>
+		<div id="info">
+			<p style="display: none;">FPS: <span id="fps">00</span>fps</p>
+			<p>Дата: <span id="date"></span></p>
+		</div>
+	</div>
+	<div id="info">
+
+	</div>
+	<div id="about">
+		<h1>Трёхмерная модель Солнечной системы</h1>
+		<p>Модель Солнечной системы с астероидами главного пояса (между орбитами Марса и Юпитера) и пояса Койпера (за
+			орбитой Нептуна), а также тремя транснептуновыми объектами: Эридой, Макемаке и Хаумеа. Диаметр планет —
+			условный. Надписаны первые 30&nbsp;астероидов главного пояса и Хирон (2060).</p>
+		<img class="img-left" alt="Солнце" title="Солнце" src="./images/sun.png" width="60" height="60">
+		<p>СОЛНЦЕ<br>— единственная звезда Солнечной системы, жёлтый карлик. На Солнце приходится 99,86% массы Солнечной
+			системы. Внутри Солнца может поместиться более миллиона Земель. Солнце — почти идеальная сфера. Разница его
+			полярного и экваториального диаметров составляет всего 10&nbsp;км. Свет Солнца достигает Земли за
+			8&nbsp;минут.</p>
+		<p>Физические сведения. Радиус — 695&nbsp;000&nbsp;км. Масса — 1,99e30&nbsp;кг. Плотность —
+			1,41&nbsp;г/см<sup>3</sup>. Звёздная величина — -26,0. Абсолютная звёздная величина — 4,71. Период вращения
+			вокруг оси — 24,6&nbsp;сут. Скорость освобождения — 580&nbsp;км/с. Спектральный класс — G. Наклон экватора к
+			эклиптике — 7°15'. Состав — H<sub>2</sub>, He.</p>
+		<img class="img-left" alt="Меркурий" title="Меркурий" src="./images/mercury.png" width="60" height="60">
+		<p>МЕРКУРИЙ<br>— ближайшая к Солнцу планета. У него отсутствует атмосфера, что позволяет наблюдать его
+			поверхность напрямую. Температура колеблется от 426&nbsp;°C на обращённой к Солнцу стороне до -173&nbsp;°C
+			на ночной стороне.</p>
+		<p>Данные орбиты. Среднее расстояние от Солнца — 57&nbsp;910&nbsp;000&nbsp;км. Период обращения —
+			87,97&nbsp;сут. Наклонение к эклиптике — 7,00°. Эксцентриситет — 0,21. Синодический период обращения —
+			115,8775&nbsp;сут.</p>
+		<p>Физические сведения. Экваториальный радиус — 2440&nbsp;км. Масса — 3,30e23&nbsp;кг. Плотность —
+			5,43&nbsp;г/см<sup>3</sup>. Альбедо — 0,11. Звёздная величина — -1,9. Период вращения вокруг оси —
+			58,6&nbsp;сут. Видимый диаметр — 4,7/12,8&nbsp;сек&nbsp;дуги.</p>
+		<p>Дополнительные сведения. Сила тяжести — 0,378&nbsp;г. Скорость освобождения — 4,25&nbsp;км/с. Средняя
+			орбитальная скорость — 47,87&nbsp;км/с. Наклон экватора к орбите — 0°. Долгота восходящего узла — 48,35°.
+			Долгота перигелия — 77,44°. Температура поверхности — 440&nbsp;K. Давление — 0&nbsp;атм. Магнитное поле —
+			2e-3…1e-2&nbsp;Гс. Поток солнечной энергии (Земля&nbsp;=&nbsp;1) — 4,61…10,61.</p>
+		<img class="img-left" alt="Венера" title="Венера" src="./images/venus.png" width="60" height="60">
+		<p>ВЕНЕРА<br>размером почти с Землю. Это вторая планета от Солнца. Её, как и Меркурий, никогда нельзя увидеть в
+			полночь. Венера покрыта плотным слоем облаков из серной кислоты. Средняя температура на её поверхности —
+			около 464&nbsp;°C.</p>
+		<p>Данные орбиты. Среднее расстояние от Солнца — 108&nbsp;200&nbsp;000&nbsp;км. Период обращения —
+			224,70&nbsp;сут. Наклонение к эклиптике — 3,39°. Эксцентриситет — 0,01. Синодический период обращения —
+			583,9214&nbsp;сут.</p>
+		<p>Физические сведения. Экваториальный радиус — 6052&nbsp;км. Масса — 4,87e24&nbsp;кг. Плотность —
+			5,24&nbsp;г/см<sup>3</sup>. Альбедо — 0,65. Звёздная величина — -4,4. Период вращения вокруг оси —
+			243&nbsp;сут (ретро). Видимый диаметр — 9,8/66,7&nbsp;сек&nbsp;дуги.</p>
+		<p>Дополнительные сведения. Сила тяжести — 0,905&nbsp;г. Скорость освобождения — 10,36&nbsp;км/с. Средняя
+			орбитальная скорость — 35,02&nbsp;км/с. Наклон экватора к орбите — 177,36°. Долгота восходящего узла —
+			76,72°. Долгота перигелия — 131,56°. Температура поверхности — 730&nbsp;K. Давление — 93&nbsp;атм. Состав
+			атмосферы — CO<sub>2</sub>, N<sub>2</sub>. Магнитное поле — <&nbsp;3e-4&nbsp;Гс. Поток солнечной энергии
+				(Земля&nbsp;=&nbsp;1) — 1,91.</p>
+				<img class="img-left" alt="Земля" title="Земля" src="./images/earth.png" width="60" height="60">
+				<p>ЗЕМЛЯ<br>— третья планета от Солнца. Самая плотная из планет. Около 75% поверхности Земли составляет
+					вода. Рекордно высокая температура (+58&nbsp;°C) была зарегистрирована в Эль-Азизии (Ливия), а
+					рекордно низкая (-89,2&nbsp;°C) — на станции Восток в Антарктиде.</p>
+				<p>Данные орбиты. Среднее расстояние от Солнца — 149&nbsp;600&nbsp;000&nbsp;км. Период обращения —
+					365,26&nbsp;сут. Наклонение к эклиптике — 0,00°. Эксцентриситет — 0,02.</p>
+				<p>Физические сведения. Экваториальный радиус — 6378&nbsp;км. Масса — 5,97e24&nbsp;кг. Плотность —
+					5,52&nbsp;г/см<sup>3</sup>. Альбедо — 0,37. Период вращения вокруг оси — 0,99&nbsp;сут.</p>
+				<p>Дополнительные сведения. Сила тяжести — 1,000&nbsp;г. Скорость освобождения — 11,18&nbsp;км/с.
+					Средняя орбитальная скорость — 29,79&nbsp;км/с. Наклон экватора к орбите — 23,45°. Сжатие — 0,00335.
+					Долгота восходящего узла — 354,90°. Долгота перигелия — 102,83°. Температура поверхности —
+					287&nbsp;K. Давление — 1&nbsp;атм. Состав атмосферы — N<sub>2</sub>, O<sub>2</sub>, Ar. Магнитное
+					поле — 0,3…0,6&nbsp;Гс.</p>
+				<img class="img-left" alt="Луна" title="Луна" src="./images/moon.png" width="60" height="60">
+				<p>ЛУНА<br>— единственный естественный спутник Земли. Луна всегда обращена к Земле одной и той же
+					стороной. Луна удаляется от Земли (каждый год примерно на 3,8&nbsp;см).</p>
+				<p>Физические сведения. Среднее расстояние до Земли — 384&nbsp;400&nbsp;км. Средний видимый диаметр —
+					31'5". Звёздная величина полной Луны — -12,5. Сидерический период — 27,32&nbsp;сут. Синодический
+					период — 29,53&nbsp;сут. Средняя орбитальная скорость — 1,02&nbsp;км/с. Наклонение орбиты к
+					эклиптике — 5°09'. Эксцентриситет орбиты — 0,0549. Диаметр — 3476&nbsp;км. Масса
+					(Земля&nbsp;=&nbsp;1) — 0,0123. Плотность (Земля&nbsp;=&nbsp;1) — 0,60. Скорость освобождения —
+					2,4&nbsp;км/с.</p>
+				<img class="img-left" alt="Марс" title="Марс" src="./images/mars.png" width="60" height="60">
+				<p>МАРС<br>— четвёртая планета от Солнца и первая, чья орбита лежит за орбитой Земли. Поэтому его можно
+					наблюдать всю ночь. Поверхностная температура Марса опускается с отметки около 20&nbsp;°C на
+					экваторе днём до -85&nbsp;°C ночью.</p>
+				<p>Данные орбиты. Среднее расстояние от Солнца — 227&nbsp;940&nbsp;000&nbsp;км. Период обращения —
+					686,98&nbsp;сут. Наклонение к эклиптике — 1,85°. Эксцентриситет — 0,09. Синодический период
+					обращения — 779,9361&nbsp;сут.</p>
+				<p>Физические сведения. Экваториальный радиус — 3397&nbsp;км. Масса — 6,42e23&nbsp;кг. Плотность —
+					3,93&nbsp;г/см<sup>3</sup>. Альбедо — 0,15. Звёздная величина — -2,0. Период вращения вокруг оси —
+					1,03&nbsp;сут. Видимый диаметр — 3,5/25,5&nbsp;сек&nbsp;дуги.</p>
+				<p>Дополнительные сведения. Сила тяжести — 0,379&nbsp;г. Скорость освобождения — 5,02&nbsp;км/с. Средняя
+					орбитальная скорость — 24,13&nbsp;км/с. Наклон экватора к орбите — 25,19°. Сжатие — 0,00519. Долгота
+					восходящего узла — 49,60°. Долгота перигелия — 335,99°. Температура поверхности — 218&nbsp;K.
+					Давление — 0,007&nbsp;атм. Состав атмосферы — CO<sub>2</sub>, N<sub>2</sub>, Ar. Магнитное поле —
+					6e-4&nbsp;Гс. Поток солнечной энергии (Земля&nbsp;=&nbsp;1) — 0,43.</p>
+				<img class="img-left" alt="Юпитер" title="Юпитер" src="./images/jupiter.png" width="60" height="60">
+				<p>ЮПИТЕР<br>— самая большая планета Солнечной системы и следующий после Солнца, Луны и Венеры ярчайший
+					объект неба. Атмосфера Юпитера полностью состоит из облаков газа. Средняя температура атмосферы
+					планеты — около -108&nbsp;°C.</p>
+				<p>Данные орбиты. Среднее расстояние от Солнца — 778&nbsp;330&nbsp;000&nbsp;км. Период обращения —
+					4332,71&nbsp;сут. Наклонение к эклиптике — 1,31°. Эксцентриситет — 0,05. Синодический период
+					обращения — 398,884&nbsp;сут.</p>
+				<p>Физические сведения. Экваториальный радиус — 71492&nbsp;км. Масса — 1,90e27&nbsp;кг. Плотность —
+					1,33&nbsp;г/см<sup>3</sup>. Альбедо — 0,52. Звёздная величина — -2,7. Период вращения вокруг оси —
+					0,41&nbsp;сут. Видимый диаметр — 31…50&nbsp;сек&nbsp;дуги.</p>
+				<p>Дополнительные сведения. Сила тяжести — 2,529&nbsp;г. Скорость освобождения — 59,56&nbsp;км/с.
+					Средняя орбитальная скорость — 13,06&nbsp;км/с. Наклон экватора к орбите — 3,13°. Сжатие — 0,06481.
+					Долгота восходящего узла — 100,47°. Долгота перигелия — 15,63°. Температура поверхности —
+					120&nbsp;K. Состав атмосферы — H<sub>2</sub>, He. Магнитное поле — 4,3&nbsp;Гс. Поток солнечной
+					энергии (Земля&nbsp;=&nbsp;1) — 3,7.</p>
+				<img class="img-left" alt="Сатурн" title="Сатурн" src="./images/saturn.png" width="151" height="60">
+				<p>САТУРН,<br>подобно Юпитеру, полностью покрыт облаками. Наиболее заметным его элементом являются
+					кольца, которые, впрочем, невооружённым глазом не видны. Средняя температура атмосферы Сатурна —
+					примерно -139&nbsp;°C.</p>
+				<p>Данные орбиты. Среднее расстояние от Солнца — 1&nbsp;429&nbsp;400&nbsp;000&nbsp;км. Период обращения
+					— 10759,50&nbsp;сут. Наклонение к эклиптике — 2,49°. Эксцентриситет — 0,06. Синодический период
+					обращения — 378,092&nbsp;сут.</p>
+				<p>Физические сведения. Экваториальный радиус — 60268&nbsp;км. Масса — 5,68e26&nbsp;кг. Плотность —
+					0,69&nbsp;г/см<sup>3</sup>. Альбедо — 0,47. Звёздная величина — 0,7. Период вращения вокруг оси —
+					0,45&nbsp;сут. Видимый диаметр — 15…21&nbsp;сек&nbsp;дуги.</p>
+				<p>Дополнительные сведения. Сила тяжести — 1,066&nbsp;г. Скорость освобождения — 35,49&nbsp;км/с.
+					Средняя орбитальная скорость — 6,80&nbsp;км/с. Наклон экватора к орбите — 97,86°. Сжатие — 0,1076.
+					Долгота восходящего узла — 113,71°. Долгота перигелия — 92,80°. Температура поверхности — 88&nbsp;K.
+					Состав атмосферы — H<sub>2</sub>, He. Магнитное поле — 0,21&nbsp;Гс. Поток солнечной энергии
+					(Земля&nbsp;=&nbsp;1) — 1,1.</p>
+				<img class="img-left" alt="Уран" title="Уран" src="./images/uranus.png" width="60" height="60">
+				<p>УРАН<br>необычен тем, что ось вращения планеты наклонена на 98° по отношению к оси его орбиты.
+					Диаметр Урана в 4&nbsp;раза превышает диаметр Земли. Температура поверхности составляет
+					-218&nbsp;°C. Невооружённым глазом Уран едва заметен.</p>
+				<p>Данные орбиты. Среднее расстояние от Солнца — 2&nbsp;870&nbsp;990&nbsp;000&nbsp;км. Период обращения
+					— 30685,00&nbsp;сут. Наклонение к эклиптике — 0,77°. Эксцентриситет — 0,05. Синодический период
+					обращения — 369,656&nbsp;сут.</p>
+				<p>Физические сведения. Экваториальный радиус — 25559&nbsp;км. Масса — 8,68e25&nbsp;кг. Плотность —
+					1,32&nbsp;г/см<sup>3</sup>. Альбедо — 0,51. Звёздная величина — 5,5. Период вращения вокруг оси —
+					0,72&nbsp;сут (ретро). Видимый диаметр — 3,4…4,1&nbsp;сек&nbsp;дуги.</p>
+				<p>Дополнительные сведения. Сила тяжести — 0,903&nbsp;г. Скорость освобождения — 21,30&nbsp;км/с.
+					Средняя орбитальная скорость — 6,80&nbsp;км/с. Наклон экватора к орбите — 97,86°. Сжатие — 0,030.
+					Долгота восходящего узла — 74,06°. Долгота перигелия — 176,29°. Температура поверхности — 59&nbsp;K.
+					Состав атмосферы — H<sub>2</sub>, He, CH<sub>4</sub>. Магнитное поле — 0,23&nbsp;Гс. Поток солнечной
+					энергии (Земля&nbsp;=&nbsp;1) — 0,3.</p>
+				<img class="img-left" alt="Нептун" title="Нептун" src="./images/neptune.png" width="60" height="60">
+				<p>НЕПТУН<br>был обнаружен по координатам, вычисленным ранее по отклонениям в движении Урана. С Земли он
+					виден как голубой диск, движущийся через созвездия со скоростью около 2° в год. Его можно увидеть в
+					бинокль.</p>
+				<p>Данные орбиты. Среднее расстояние от Солнца — 4&nbsp;504&nbsp;300&nbsp;000&nbsp;км. Период обращения
+					— 60190,0&nbsp;сут. Наклонение к эклиптике — 1,77°. Эксцентриситет — 0,01. Синодический период
+					обращения — 367,487&nbsp;сут.</p>
+				<p>Физические сведения. Экваториальный радиус — 24766&nbsp;км. Масса — 1,02e26&nbsp;кг. Плотность —
+					1,64&nbsp;г/см<sup>3</sup>. Альбедо — 0,41. Звёздная величина — 7,8. Период вращения вокруг оси —
+					0,67&nbsp;сут. Видимый диаметр — 2,4&nbsp;сек&nbsp;дуги.</p>
+				<p>Дополнительные сведения. Сила тяжести — 1,096&nbsp;г. Скорость освобождения — 23,50&nbsp;км/с.
+					Средняя орбитальная скорость — 5,44&nbsp;км/с. Наклон экватора к орбите — 29,60°. Сжатие — 0,026.
+					Долгота восходящего узла — 131,81°. Долгота перигелия — 1,95°. Температура поверхности — 48&nbsp;K.
+					Состав атмосферы — H<sub>2</sub>, He, CH<sub>4</sub>. Магнитное поле — 0,1…1&nbsp;Гс. Поток
+					солнечной энергии (Земля&nbsp;=&nbsp;1) — 0,1.</p>
+				<img class="img-left" alt="Плутон" title="Плутон" src="./images/pluto.png" width="60" height="60">
+				<p>ПЛУТОН<br>в 2006&nbsp;г. Международным астрономическим союзом признан карликовой планетой.</p>
+				<p>Данные орбиты. Среднее расстояние от Солнца — 5&nbsp;913&nbsp;520&nbsp;000&nbsp;км. Период обращения
+					— 90800&nbsp;сут. Наклонение к эклиптике — 17,15°. Эксцентриситет — 0,25. Синодический период
+					обращения — 366,74&nbsp;сут.</p>
+				<p>Физические сведения. Экваториальный радиус — 1137&nbsp;км. Масса — 1,27e22&nbsp;кг. Плотность —
+					2,06&nbsp;г/см<sup>3</sup>. Альбедо — 0,55. Звёздная величина — 13,6. Период вращения вокруг оси —
+					6,39&nbsp;сут (ретро). Видимый диаметр — 0,2&nbsp;сек&nbsp;дуги.</p>
+				<p>Дополнительные сведения. Сила тяжести — 0,069&nbsp;г. Скорость освобождения — 1,22&nbsp;км/с. Средняя
+					орбитальная скорость — 4,74&nbsp;км/с. Наклон экватора к орбите — 122,52°. Долгота восходящего узла
+					— 110,42°. Долгота перигелия — 224,59°. Температура поверхности — 37&nbsp;K. Давление —
+					1e-5&nbsp;атм. Состав атмосферы — N<sub>2</sub>, CH<sub>4</sub>, CO.</p>
+				<h2>Управление</h2>
+				<ul>
+					<li>Вращение — кликнуть левой клавишей мыши и перетащить.</li>
+					<li>Смещение — кликнуть правой клавишей мыши и перетащить.</li>
+					<li>Приближение/Отдаление — скроллить или, зажав среднюю клавишу мыши, перетаскивать.</li>
+					<li>Полноэкранный режим — <kbd>F11</kbd>.</li>
+					<li>Увеличить скорость — <kbd>&#8594;</kbd>.</li>
+					<li>Уменьшить скорость — <kbd>&#8592;</kbd>.</li>
+					<li>Старт/Пауза — <kbd>Пробел</kbd>.</li>
+				</ul>
+				<h2>Настройки</h2>
+				<ul>
+					<li>Скорость — устанавливаемая ползунком прямая/обратная скорость симуляции.</li>
+					<li>Старт/Пауза — включить/выключить симуляцию.</li>
+					<li>Астероиды — включить/выключить показ астероидов.</li>
+					<li>Млечный Путь — включить/выключить отображение картинки Млечного Пути.</li>
+					<li>Слежение — выбрать объект для слежения.</li>
+					<li>Начальная дата — установить дату начала симуляции.</li>
+					<li>Скриншот — сделать снимок экрана (без надписей и элементов управления). На открывшемся в новой
+						вкладке изображении щёлкните правой кнопкой мыши и сохраните его.</li>
+				</ul>
+				<h2>Источники</h2>
+				<ul>
+					<li>Орбитальные элементы планет: <a href="https://ssd.jpl.nasa.gov/horizons.cgi" target="_blank"
+							rel="noopener">HORIZONS</a> (информационная система NASA). </li>
+					<li>Орбитальные элементы астероидов: <a href="https://ssd.jpl.nasa.gov/?sb_elem" target="_blank"
+							rel="noopener">база данных JPL NASA</a>. </li>
+					<li>Орбитальные элементы транснептуновых объектов: <a href="https://ssd.jpl.nasa.gov/sbdb.cgi?"
+							target="_blank" rel="noopener">база данных JPL NASA по малым телам</a>. </li>
+					<li>Изображение Млечного Пути: <a href="https://www.eso.org/public/images/eso0932a/" target="_blank"
+							rel="noopener">ESO-панорама</a>. </li>
+					<li>Изображения Солнца, Луны, планет: <a href="https://www.jpl.nasa.gov/" target="_blank"
+							rel="noopener">NASA/European Space Agency</a>. </li>
+				</ul><a href="javascript:void(0)" id="aboutClose" onclick="closeHelp();"
+					onmouseover="this.style.textDecoration='none';" title="Закрыть (Esc)">&#10761;</a>
+	</div>
+	<div class="copyright">
+		<p>© 2023<span id="curryear"></span>
+			<script>
+				function getCurrentYear() { var d = new Date(); var n = d.getFullYear(); document.getElementById("curryear").innerHTML = n; }
+				getCurrentYear();
+			</script> <a href="//liveplanets.ru">DolNet</a>
+		</p>
+	</div>
+</body>
+
+</html>
