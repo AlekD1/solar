@@ -5,8 +5,6 @@ A way to interact with the solar system and learn more about it.
 
 Go and play with it!
 
-**https://dumitrux.github.io/solar-system-threejs**
-
 
 ## Table of content
 * [Motivation](#Motivation?)
