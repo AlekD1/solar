@@ -48,4 +48,3 @@ MIT License
 
 
 ## Author
-Danci, Marian Dumitru ([@dumitrux](https://github.com/dumitrux))
