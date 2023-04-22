@@ -76,31 +76,7 @@ class PickHelper {
     }
 }
 
-// create starbox
 
-const imagePrefix = "/solar/assets/textures/2kstars/";
-const directions = ["GalaxyTex_PositiveX", "GalaxyTex_NegativeX", "GalaxyTex_PositiveY",
-    "GalaxyTex_NegativeY", "GalaxyTex_PositiveZ", "GalaxyTex_NegativeZ"];
-const imageSuffix = ".png";
-
-let materialArray = [];
-for (let i = 0; i < 6; i++)
-    materialArray.push(new THREE.MeshBasicMaterial({
-        map: THREE.ImageUtils.loadTexture(imagePrefix + directions[i] + imageSuffix),
-        side: THREE.FrontSide
-    }));
-const starMaterial = new THREE.MeshFaceMaterial(materialArray);
-const starGeometry = new THREE.CubeGeometry(120000, 120000, -120000);
-const starbox = new THREE.Mesh(starGeometry, starMaterial);
-scene.add(starbox);
-
-starbox.rotation.x = THREE.Math.degToRad(63);
-
-starbox.position.set(
-    camera.position.x,
-    camera.position.y,
-    camera.position.z
-);
 // Astronomical bodie name with its position (x)
 // This should be in a JSON file :/
 var AstronomicalBodiesNames = {
