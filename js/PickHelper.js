@@ -36,44 +36,6 @@ class PickHelper {
         sprite.scale.set(10, 10, 10);
         scene.add(sprite);
     }
-
-    openModal(positionX) {
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        var name = document.getElementById("nameOfObject");
-        var planetSymbol = document.getElementById("planetSymbol");
-        var volumeXEarths = document.getElementById("volumeXEarths");
-        var orbitDistance = document.getElementById("orbitDistance");
-        var equatorialRadius = document.getElementById("equatorialRadius");
-        var surfaceGravity = document.getElementById("surfaceGravity");
-        var rotationPeriodEarthDays = document.getElementById("rotationPeriodEarthDays");
-        var orbitalPeriod = document.getElementById("orbitalPeriod");
-        var meanOrbitVelocity = document.getElementById("meanOrbitVelocity");
-        var atmoshpericConstituents = document.getElementById("atmoshpericConstituents");
-        var moons = document.getElementById("moons");
-        var rings = document.getElementById("rings");
-        var adjective = document.getElementById("adjective");
-
-
-        modal.style.display = "block";
-
-        name.innerHTML = AstronomicalBodiesNames[positionX].name + "  ";
-        planetSymbol.src = "./assets/astronomical-symbol/" +
-            AstronomicalBodiesNames[positionX].name + "-symbol.png";
-        volumeXEarths.innerHTML = AstronomicalBodiesNames[positionX].volumeXEarths;
-        orbitDistance.innerHTML = AstronomicalBodiesNames[positionX].orbitDistance;
-        equatorialRadius.innerHTML = AstronomicalBodiesNames[positionX].equatorialRadius;
-        surfaceGravity.innerHTML = AstronomicalBodiesNames[positionX].surfaceGravity;
-        rotationPeriodEarthDays.innerHTML = AstronomicalBodiesNames[positionX].rotationPeriodEarthDays;
-        orbitalPeriod.innerHTML = AstronomicalBodiesNames[positionX].orbitalPeriod;
-        meanOrbitVelocity.innerHTML = AstronomicalBodiesNames[positionX].meanOrbitVelocity;
-        surfaceTemperature.innerHTML = AstronomicalBodiesNames[positionX].surfaceTemperature;
-        atmoshpericConstituents.innerHTML = AstronomicalBodiesNames[positionX].atmoshpericConstituents;
-        moons.innerHTML = AstronomicalBodiesNames[positionX].moons;
-        rings.innerHTML = AstronomicalBodiesNames[positionX].rings;
-        adjective.innerHTML = AstronomicalBodiesNames[positionX].adjective;
-    }
 }
 
 
