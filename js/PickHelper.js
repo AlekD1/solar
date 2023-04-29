@@ -56,7 +56,7 @@ class PickHelper {
         var adjective = document.getElementById("adjective");
 
 
-        modal.style.display = "none";
+        modal.style.display = "block";
 
         name.innerHTML = AstronomicalBodiesNames[positionX].name + "  ";
         planetSymbol.src = "./assets/astronomical-symbol/" +
