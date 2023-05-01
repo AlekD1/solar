@@ -131,8 +131,7 @@ function SceneManager(canvas) {
         pickPosition.x = undefined;
         pickPosition.y = undefined;
     }
-
-    window.addEventListener('dblclick', setPickPosition);
+   
     window.addEventListener('mouseout', clearPickPosition);
     window.addEventListener('mouseleave', clearPickPosition);
    
