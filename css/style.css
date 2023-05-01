@@ -231,7 +231,7 @@ a.fciA:hover:before {
 }
 
 .hamburger::before {
-    content: "Close";
+    content: "Закрыть";
     opacity: 0
 }
 
