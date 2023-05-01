@@ -135,17 +135,7 @@ function SceneManager(canvas) {
     window.addEventListener('mouseout', clearPickPosition);
     window.addEventListener('mouseleave', clearPickPosition);
    
-       // Mobile support
-  
-
-    window.addEventListener('touchmove', (event) => {
-        setPickPosition(event.touches[0]);
-    });
-
-    window.addEventListener('touchend', clearPickPosition);
-
-
-
+ 
 
     {
         // Modal
