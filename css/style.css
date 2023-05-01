@@ -44,7 +44,7 @@
 
 
 a.fciA {
-    margin: 40px auto;
+    margin: 0 35px 0 0;
     font-family: arial;
     font-size: 20px;
     line-height: 20px;
@@ -52,7 +52,7 @@ a.fciA {
     text-decoration: none;
     text-align: center;
     display: block;
-    width: 400px;
+    width: 200px;
     color: #888888;
     position: relative;
     -webkit-transition: color 0.2s;
