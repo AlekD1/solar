@@ -135,6 +135,10 @@ function SceneManager(canvas) {
     window.addEventListener('mouseout', clearPickPosition);
     window.addEventListener('mouseleave', clearPickPosition);
    
+       window.addEventListener('touchstart', (event) => {
+        // prevent the window from scrolling
+        event.preventDefault();
+    }, { passive: false });
  
 
     {
