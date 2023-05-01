@@ -215,10 +215,13 @@ a.fciA:hover:before {
 
 .hamburger::after,
 .hamburger::before {
-    content: "Menu";
+    content: "Меню";
     position: absolute;
     top: 14px;
-    left: 48px;
+    width: 120px;
+    padding-left: 60px;
+    left: -18px;
+    z-index: 10;
     color: #000;
     text-transform: uppercase;
     letter-spacing: 1px;
