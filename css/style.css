@@ -109,6 +109,23 @@ option {
     text-align: center;
 }
 
+#toTop {
+    width: 100px;
+    border: 1px solid #333;
+    background: transparent;
+    text-align: center;
+    padding: 5px;
+    position: fixed;
+    bottom: 10px;
+    /* отступ кнопки от нижнего края страницы*/
+    right: 10px;
+    cursor: pointer;
+    display: none;
+    color: #888888;
+    font-family: verdana;
+    font-size: 11px;
+}
+
 a.fciA {
     margin: 0 55px 0 0;
     font-family: arial;
