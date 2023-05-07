@@ -316,7 +316,7 @@ a.fciA:hover:before {
 .hamburger::before {
     content: "Меню";
     position: absolute;
-    top: 14px;
+    top: 12px;
     width: 120px;
     padding-left: 60px;
     left: -18px;
