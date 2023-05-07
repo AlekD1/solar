@@ -33,20 +33,20 @@
 
   <script type="text/javascript">
 
-    $(function () {
+         $(function () {
 
       $(window).scroll(function () {
+        if (window.innerWidth >= 990) {
+          if ($(this).scrollTop() != 0) {
 
-        if ($(this).scrollTop() != 0) {
+            $('#toTop').fadeIn();
 
-          $('#toTop').fadeIn();
+          } else {
 
-        } else {
+            $('#toTop').fadeOut();
 
-          $('#toTop').fadeOut();
-
+          }
         }
-
       });
 
       $('#toTop').click(function () {
