@@ -29,6 +29,35 @@
       src: local(''), url('../fonts/cormorant-garamond-500.woff2') format('woff2');
     }
   </style>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+
+    $(function () {
+
+      $(window).scroll(function () {
+
+        if ($(this).scrollTop() != 0) {
+
+          $('#toTop').fadeIn();
+
+        } else {
+
+          $('#toTop').fadeOut();
+
+        }
+
+      });
+
+      $('#toTop').click(function () {
+
+        $('body,html').animate({ scrollTop: 0 }, 800);
+
+      });
+
+    });
+
+  </script>
 </head>
 
 <body class="dark-theme">
@@ -743,6 +772,7 @@
   <script src="js/plugins/scrollendzoom.min.js"></script>
   <script src="js/plugins/blaze-slider.min.js"></script>
   <script src="js/index.js"></script>
+     <div id="toTop"> Наверх </div>
 </body>
 
 </html>
