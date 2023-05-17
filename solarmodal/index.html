@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Solar System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./assets/icon.png">
+
+</head>
+
+<body>
+    <!-- threjs canvas -->
+    <div class="back">
+
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <div class="modal-header-name">
+                    <h2 id="nameOfObject"></h2>
+                    <img id="planetSymbol" src="" alt="Planet symbol" width="25" height="25">
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <ul>
+                    <li>Объем: <span id="volumeXEarths"></span> Земля</li>
+                    <li>Расстояние по орбите: <span id="orbitDistance"></span> км</li>
+                    <li>Экваториальный радиус: <span id="equatorialRadius"></span> км</li>
+                    <li>Поверхностная гравитация: <span id="surfaceGravity"></span> м/с^2</li>
+                    <li>Период вращения: <span id="rotationPeriodEarthDays"></span> дней</li>
+                    <li>Орбитальный период: <span id="orbitalPeriod"></span> дней</li>
+                    <li>Средняя орбитальная скорость: <span id="meanOrbitVelocity"></span> км/в</li>
+                    <li>Температура поверхности: <span id="surfaceTemperature"></span> °C</li>
+                    <li>Атмосферные составляющие: <span id="atmoshpericConstituents"></span></li>
+                    <li>Спутники: <span id="moons"></span></li>
+                    <li>Кольца: <span id="rings"></span></li>
+                    <li>Характеристика: <span id="adjective"></span></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Loading -->
+    <div id="loading">
+        <div id="author">
+            <a id="myLink" href="https://vk.com/alekdn" target="_blank"> IT в космосе</a>
+        </div>
+        <div class="center">
+            <h1 id="title">СОЛНЕЧНАЯ СИСТЕМА</h1>
+            <div class="instructions">
+                <div class="desktop">
+                    <p>Разработчики</p>
+                    <p>Дмитрий Мамонов</p>
+                    <p>Долобан Алексей</p>
+                    <p>Гергокаев Ахмат</p>
+                    <p>Исаченко Владислав</p>
+                </div>
+                <div class="mobile">
+                    <p>Разработчики</p>
+                    <p>Дмитрий Мамонов</p>
+                    <p>Долобан Алексей</p>
+                    <p>Гергокаев Ахмат</p>
+                    <p>Исаченко Владислав</p>
+                </div>
+                <button id="loadButton">ПОЕХАЛИ!</button>
+            </div>
+            <br>
+
+        </div>
+    </div>
+
+    <!-- Close -->
+    <div id="loading2">
+        <button id="loadButton2"><img src="../img/close_48124.png" alt="" class="but_close"><a
+                href="../index.html"></a></button>
+    </div>
+
+
+
+    <script src="./js/LoadPage.js"></script>
+    <script src='./js/libs/three_r120.min.js'></script>
+    <script src='./js/libs/OrbitControls.js'></script>
+    <script src='./js/libs/OBJLoader.js'></script>
+    <script src='./js/libs/MTLLoader.js'></script>
+    <script src='./js/libs/dat.gui.min.js'></script>
+
+    <script src="./js/cameraControls/MyCameraControls.js"></script>
+    <script src="./js/PickHelper.js"></script>
+    <script src="./js/gui/ColorGUIHelper.js"></script>
+
+
+    <script src="./js/sceneSubjects/AmbientLight.js"></script>
+    <script src="./js/sceneSubjects/SunLight.js"></script>
+
+    <script src="./assets/SolarSystem.js"></script>
+    <script src="./js/sceneSubjects/astronomicalBodies/Stars.js"></script>
+
+    <script src="./js/SceneManager.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
